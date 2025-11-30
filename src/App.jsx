@@ -1,38 +1,26 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+import Workouts from "./pages/Workouts";
 import PushDay from "./pages/PushDay";
 import PullDay from "./pages/PullDay";
 import LegDay from "./pages/LegDay";
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { cn } from "./lib/utils";
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(() => {
-    const stored = localStorage.getItem("theme");
-    if (stored) return stored === "dark";
-    return true; // default dark
-  });
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
-
-  // Page transition wrapper
   function PageTransition({ children }) {
     return (
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ 
+          duration: 0.4,
+          ease: [0.4, 0.0, 0.2, 1]
+        }}
       >
         {children}
       </motion.div>
@@ -41,27 +29,70 @@ export default function App() {
 
   function AnimatedRoutes() {
     const location = useLocation();
+    
     return (
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<PageTransition><Home /></PageTransition>} />
-          <Route path="/push" element={<PageTransition><PushDay /></PageTransition>} />
-          <Route path="/pull" element={<PageTransition><PullDay /></PageTransition>} />
-          <Route path="/leg" element={<PageTransition><LegDay /></PageTransition>} />
+          <Route 
+            path="/" 
+            element={
+              <PageTransition>
+                <Home />
+              </PageTransition>
+            } 
+          />
+          <Route 
+            path="/workouts" 
+            element={
+              <PageTransition>
+                <Workouts />
+              </PageTransition>
+            } 
+          />
+          <Route 
+            path="/push" 
+            element={
+              <PageTransition>
+                <PushDay />
+              </PageTransition>
+            } 
+          />
+          <Route 
+            path="/pull" 
+            element={
+              <PageTransition>
+                <PullDay />
+              </PageTransition>
+            } 
+          />
+          <Route 
+            path="/legs" 
+            element={
+              <PageTransition>
+                <LegDay />
+              </PageTransition>
+            } 
+          />
         </Routes>
       </AnimatePresence>
     );
   }
 
+  function ConditionalFooter() {
+    const location = useLocation();
+    // Only show footer on the home page
+    return location.pathname === "/" ? <Footer /> : null;
+  }
+
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Router>
-        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         <div className="flex flex-col min-h-screen">
-          <main className="flex-1 pt-20">
+          <Navbar />
+          <main className="flex-1">
             <AnimatedRoutes />
           </main>
-          <Footer />
+          <ConditionalFooter />
         </div>
       </Router>
     </div>

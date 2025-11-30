@@ -1,105 +1,236 @@
-import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Dumbbell, ArrowUpCircle, ArrowDownCircle, Circle } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { quotes } from "../quotes";
-import gymVideo from "../assets/gym-video.mp4";
+import { ArrowRight, Dumbbell, Target, TrendingUp, Zap } from "lucide-react";
+import { Link } from "react-router-dom";
+import { cn, gradients, shadows } from "../lib/utils";
 
 export default function Home() {
-  const navigate = useNavigate();
-  const workoutRef = useRef(null);
-  const [quote, setQuote] = useState("");
+  const features = [
+    {
+      icon: <Dumbbell className="w-6 h-6" />,
+      title: "Push Day",
+      description: "Chest, shoulders, and triceps workouts designed for maximum growth.",
+      color: "from-red-500 to-pink-500"
+    },
+    {
+      icon: <Target className="w-6 h-6" />,
+      title: "Pull Day", 
+      description: "Back and biceps exercises to build a powerful upper body.",
+      color: "from-blue-500 to-cyan-500"
+    },
+    {
+      icon: <TrendingUp className="w-6 h-6" />,
+      title: "Leg Day",
+      description: "Comprehensive lower body training for strength and stability.",
+      color: "from-green-500 to-emerald-500"
+    }
+  ];
 
-  useEffect(() => {
-    setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
-  }, []);
-
-  const handleStart = () => {
-    workoutRef.current.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const videoSrc = `${gymVideo}?v=${Date.now()}`;
+  const stats = [
+    { number: "3", label: "Workout Days" },
+    { number: "20+", label: "Exercises" },
+    { number: "100%", label: "Results" }
+  ];
 
   return (
-    <div className="relative min-h-screen flex flex-col justify-between bg-black">
-      {/* Hero Section with Video Background */}
-      <section className="relative flex flex-col items-center justify-center h-screen text-center text-white overflow-hidden">
-        {/* Video Background - Only for Hero Section */}
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            className="w-full h-full object-cover"
-            onCanPlay={(e) => { try { e.currentTarget.play(); } catch (_) {} }}
-          >
-            <source src={videoSrc} type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-black bg-opacity-30 pointer-events-none" />
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-20 pb-32">
+        {/* Background Effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-40 left-10 w-72 h-72 bg-primary-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-40 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-primary-500/5 via-transparent to-purple-500/5 rounded-full blur-3xl" />
         </div>
-        
-        {/* Hero Content */}
-        <div className="relative z-10 px-4 sm:px-6 lg:px-8">
-          <motion.h1
-            initial={{ opacity: 0, y: 60 }}
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 drop-shadow-lg"
+            transition={{ duration: 0.8, ease: [0.4, 0.0, 0.2, 1] }}
+            className="space-y-8"
           >
-            <span className="bg-gradient-to-r from-pink-500 via-yellow-400 to-blue-500 bg-clip-text text-transparent animate-pulse">
-              Push · Pull · Legs – The Ultimate Split
-            </span>
-          </motion.h1>
-          <motion.button
-            whileHover={{ scale: 1.1, boxShadow: "0 0 24px #f472b6, 0 0 48px #3b82f6" }}
-            className="mt-6 sm:mt-8 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-full bg-gradient-to-r from-pink-500 via-yellow-400 to-blue-500 text-white shadow-lg ring-2 ring-pink-400 focus:outline-none focus:ring-4 focus:ring-blue-500 transition-all"
-            onClick={handleStart}
-          >
-            Start Workout
-          </motion.button>
-        </div>
-      </section>
-
-      {/* Workout Selection Section */}
-      <section ref={workoutRef} className="py-16 bg-gray-900 bg-opacity-80 flex flex-col items-center">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl mx-auto px-2">
-          {[{
-            icon: <ArrowUpCircle size={48} className="text-pink-500 mb-4 animate-bounce" />, label: "Push Day", desc: "Chest, Shoulders, Triceps", link: "/push", delay: 0.2
-          }, {
-            icon: <ArrowDownCircle size={48} className="text-blue-500 mb-4 animate-bounce" />, label: "Pull Day", desc: "Back, Biceps", link: "/pull", delay: 0.4
-          }, {
-            icon: <Circle size={48} className="text-yellow-400 mb-4 animate-bounce" />, label: "Leg Day", desc: "Quads, Hamstrings, Calves", link: "/leg", delay: 0.6
-          }].map(card => (
+            {/* Badge */}
             <motion.div
-              whileHover={{ scale: 1.06 }}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: card.delay }}
-              className="rounded-2xl shadow-xl border-2 border-pink-400 bg-black/40 dark:bg-gray-900/60 backdrop-blur-lg p-8 flex flex-col items-center cursor-pointer transition-all duration-300 hover:shadow-pink-500/40 hover:border-pink-500 hover:ring-4 hover:ring-pink-400/40 group"
-              onClick={() => navigate(card.link)}
-              key={card.label}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="inline-flex items-center px-4 py-2 rounded-full bg-primary-500/10 border border-primary-500/20 text-primary-400 text-sm font-medium"
             >
-              {card.icon}
-              <h2 className="text-2xl font-extrabold text-white dark:text-pink-200 text-center drop-shadow-md mb-2">{card.label}</h2>
-              <p className="text-center text-pink-300 font-semibold">{card.desc}</p>
+              <Zap className="w-4 h-4 mr-2" />
+              The Ultimate Workout Split
             </motion.div>
-          ))}
+
+            {/* Main Heading */}
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight">
+              Build faster with{" "}
+              <span className={cn(gradients.primaryText, "animate-glow")}>
+                Precision
+              </span>
+            </h1>
+
+            {/* Subheading */}
+            <p className="max-w-2xl mx-auto text-lg sm:text-xl text-foreground-secondary leading-relaxed">
+              A structured push–pull–legs system crafted using proven methods and optimal recovery principles.
+Created by Kunal with a focus on effectiveness and simplicity.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
+              <Link to="/workouts">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={cn(
+                    "group px-8 py-4 rounded-xl font-semibold text-white transition-all duration-300",
+                    gradients.primary,
+                    shadows.glow,
+                    "hover:shadow-xl hover:shadow-primary-500/40"
+                  )}
+                >
+                  Get Started
+                  <ArrowRight className="inline ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                </motion.button>
+              </Link>
+              
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-8 py-4 rounded-xl font-semibold bg-accent hover:bg-accent-secondary text-foreground border border-border hover:border-border-secondary transition-all duration-300"
+              >
+                View Exercises
+              </motion.button>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Motivational Quote */}
-      <footer className="w-full py-8 text-center bg-black bg-opacity-70 text-white text-lg font-semibold shadow-inner">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          {quote}
-        </motion.div>
-      </footer>
+      {/* Stats Section */}
+      <section className="py-20 border-t border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-3 gap-8 text-center">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                viewport={{ once: true }}
+                className="space-y-2"
+              >
+                <div className="text-3xl sm:text-4xl font-bold text-primary-400">
+                  {stat.number}
+                </div>
+                <div className="text-foreground-secondary text-sm sm:text-base">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-5xl font-bold mb-6">
+              Stack your{" "}
+              <span className={gradients.primaryText}>
+                workout routine.
+              </span>
+            </h2>
+            <p className="max-w-2xl mx-auto text-lg text-foreground-secondary">
+              Mix and match exercises to rapidly optimize your training. Everything fits 
+              together perfectly out of the box.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+                className={cn(
+                  "group p-8 rounded-2xl border border-border bg-accent/50 backdrop-blur-sm",
+                  "hover:border-border-secondary hover:bg-accent/70 transition-all duration-300",
+                  shadows.card,
+                  "hover:shadow-xl hover:shadow-black/40"
+                )}
+              >
+                <div className={cn(
+                  "w-12 h-12 rounded-xl bg-gradient-to-br flex items-center justify-center mb-6 text-white",
+                  feature.color
+                )}>
+                  {feature.icon}
+                </div>
+                
+                <h3 className="text-xl font-semibold mb-3 text-foreground">
+                  {feature.title}
+                </h3>
+                
+                <p className="text-foreground-secondary leading-relaxed">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-32">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className={cn(
+              "p-12 rounded-3xl border border-border",
+              gradients.card,
+              "backdrop-blur-xl"
+            )}
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+              Ready to start your{" "}
+              <span className={gradients.primaryText}>
+                transformation?
+              </span>
+            </h2>
+            
+            <p className="text-lg text-foreground-secondary mb-8 max-w-2xl mx-auto">
+              Join thousands who have transformed their physique with our scientifically-backed 
+              push, pull, legs split routine.
+            </p>
+            
+            <Link to="/workouts">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={cn(
+                  "px-8 py-4 rounded-xl font-semibold text-white transition-all duration-300",
+                  gradients.primary,
+                  shadows.glow,
+                  "hover:shadow-xl hover:shadow-primary-500/40"
+                )}
+              >
+                Start Training Today
+                <ArrowRight className="inline ml-2 w-5 h-5" />
+              </motion.button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 }
