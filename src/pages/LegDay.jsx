@@ -14,7 +14,7 @@ export default function LegDay() {
       name: "Squat",
       sets: "4 sets",
       reps: "8-12 reps",
-      video: "/src/assets/squat.mp4",
+      video: "/public/assets/squat.mp4",
       description: "The king of all exercises - compound movement for overall leg development.",
       tips: ["Keep chest up", "Knees track over toes", "Full depth if possible"],
       muscles: ["Quads", "Glutes", "Hamstrings", "Core"]
@@ -24,7 +24,7 @@ export default function LegDay() {
       name: "Hamstring Leg Curl",
       sets: "3 sets",
       reps: "12-15 reps", 
-      video: "/src/assets/hamstring-leg-curl.mp4",
+      video: "/public/assets/hamstring-leg-curl.mp4",
       description: "Isolation movement for hamstring strength and muscle balance.",
       tips: ["Full range of motion", "Don't lift hips", "Squeeze hamstrings"],
       muscles: ["Hamstrings", "Glutes"]
@@ -34,7 +34,7 @@ export default function LegDay() {
       name: "Leg Press",
       sets: "4 sets", 
       reps: "12-15 reps",
-      video: "/src/assets/leg-press.mp4",
+      video: "/public/assets/leg-press.mp4",
       description: "Machine-based quad and glute development with heavy loading capacity.",
       tips: ["Feet shoulder-width apart", "Don't lock knees", "Control the descent"],
       muscles: ["Quads", "Glutes", "Hamstrings"]
@@ -44,7 +44,7 @@ export default function LegDay() {
       name: "Dumbbell Shoulder Press",
       sets: "3 sets",
       reps: "10-15 reps", 
-      video: "/src/assets/DumbbellShoulderPress.mp4",
+      video: "/public/assets/DumbbellShoulderPress.mp4",
       description: "Build strong, rounded shoulders with overhead pressing.",
       tips: ["Press straight up", "Keep core tight", "Don't press behind neck"],
       muscles: ["Shoulders", "Triceps", "Upper Chest"]
@@ -54,7 +54,7 @@ export default function LegDay() {
       name: "Leg Extension",
       sets: "3 sets",
       reps: "12-15 reps",
-      video: "/src/assets/leg-extension.mp4",
+      video: "/public/assets/leg-extension.mp4",
       description: "Isolation exercise for quad development and definition.",
       tips: ["Squeeze at top", "Controlled negative", "Don't swing weight"],
       muscles: ["Quadriceps"]
@@ -64,7 +64,7 @@ export default function LegDay() {
       name: "Calf Raises",
       sets: "4 sets",
       reps: "15-20 reps",
-      video: "/src/assets/calf-raise.mp4", 
+      video: "/public/assets/calf-raise.mp4",
       description: "Essential for calf development and lower leg strength.",
       tips: ["Full stretch at bottom", "Pause at top", "Control the movement"],
       muscles: ["Calves", "Soleus"]

@@ -14,7 +14,7 @@ export default function PullDay() {
       name: "Lat Pulldown",
       sets: "4 sets",
       reps: "8-12 reps",
-      video: "/src/assets/lat-pulldown.mp4",
+      video: "/public/assets/lat-pulldown.mp4",
       description: "Primary back exercise for building width and V-taper.",
       tips: ["Pull to upper chest", "Squeeze shoulder blades", "Control the negative"],
       muscles: ["Lats", "Rhomboids", "Rear Delts", "Biceps"]
@@ -24,7 +24,7 @@ export default function PullDay() {
       name: "Barbell Row",
       sets: "4 sets",
       reps: "8-12 reps", 
-      video: "/src/assets/barbell-row.mp4",
+      video: "/public/assets/barbell-row.mp4",
       description: "Compound movement for overall back thickness and strength.",
       tips: ["Hinge at hips", "Row to lower chest", "Keep core engaged"],
       muscles: ["Middle Traps", "Rhomboids", "Lats", "Biceps"]
@@ -34,7 +34,7 @@ export default function PullDay() {
       name: "Barbell Biceps Curl",
       sets: "3 sets",
       reps: "10-12 reps",
-      video: "/src/assets/barbell-biceps-curl.mp4",
+      video: "/public/assets/barbell-biceps-curl.mp4",
       description: "Classic bicep builder for mass and peak development.", 
       tips: ["Keep elbows stationary", "Full range of motion", "Squeeze at top"],
       muscles: ["Biceps", "Forearms"]
@@ -44,7 +44,7 @@ export default function PullDay() {
       name: "Straight Arm Lat Pulldown",
       sets: "3 sets",
       reps: "12-15 reps",
-      video: "/src/assets/straight-arm-lat-pulldown.mp4", 
+      video: "/public/assets/straight-arm-lat-pulldown.mp4", 
       description: "Isolation exercise targeting lat width and mind-muscle connection.",
       tips: ["Keep arms straight", "Focus on lats", "Controlled movement"],
       muscles: ["Lats", "Rear Delts"]
@@ -54,7 +54,7 @@ export default function PullDay() {
       name: "Rope Hammer Curl",
       sets: "3 sets",
       reps: "12-15 reps", 
-      video: "/src/assets/rope-hammer-curl.mp4",
+      video: "/public/assets/rope-hammer-curl.mp4",
       description: "Neutral grip curl targeting brachialis and forearms.",
       tips: ["Neutral grip throughout", "Control the weight", "Focus on squeeze"],
       muscles: ["Brachialis", "Biceps", "Forearms"]
@@ -64,7 +64,7 @@ export default function PullDay() {
       name: "Reverse Pec Deck Fly",
       sets: "3 sets", 
       reps: "12-15 reps",
-      video: "/src/assets/reverse-pec-deck-fly.mp4",
+      video: "/public/assets/reverse-pec-deck-fly.mp4",
       description: "Rear delt isolation for balanced shoulder development.",
       tips: ["Lead with pinkies", "Squeeze at back", "Don't use momentum"],
       muscles: ["Rear Delts", "Rhomboids"]

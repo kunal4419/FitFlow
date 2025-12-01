@@ -14,7 +14,7 @@ export default function PushDay() {
       name: "Incline Dumbbell Press",
       sets: "4 sets", 
       reps: "8-12 reps",
-      video: "/src/assets/InclineDumbbellPress.mp4",
+      video: "/public/assets/InclineDumbbellPress.mp4",
       description: "Target upper chest with this inclined pressing movement.",
       tips: ["30-45 degree incline", "Press dumbbells together at top", "Don't arch back excessively"],
       muscles: ["Upper Chest", "Triceps", "Anterior Deltoids"]
@@ -24,7 +24,7 @@ export default function PushDay() {
       name: "Flat Dumbbell Press",
       sets: "4 sets",
       reps: "8-12 reps",
-      video: "/src/assets/FlatDumbbellPress.mp4",
+      video: "/public/assets/FlatDumbbellPress.mp4",
       description: "Primary chest movement targeting the middle chest fibers.",
       tips: ["Keep shoulder blades retracted", "Control the negative portion", "Full range of motion"],
       muscles: ["Chest", "Triceps", "Anterior Deltoids"]
@@ -34,7 +34,7 @@ export default function PushDay() {
       name: "Skullcrushers",
       sets: "3 sets", 
       reps: "10-12 reps",
-      video: "/src/assets/Skullcrushers.mp4",
+      video: "/public/assets/Skullcrushers.mp4",
       description: "Lying tricep extension for mass and strength.",
       tips: ["Lower to forehead level", "Keep upper arms stationary", "Use controlled tempo"],
       muscles: ["Triceps"]
@@ -44,7 +44,7 @@ export default function PushDay() {
       name: "Dumbbell Lateral Raises",
       sets: "3 sets",
       reps: "12-15 reps",
-      video: "/src/assets/DumbbellLateralRaises.mp4", 
+      video: "/public/assets/DumbbellLateralRaises.mp4",
       description: "Isolation exercise for building wider shoulders.",
       tips: ["Lead with pinkies", "Controlled tempo", "Slight forward lean"],
       muscles: ["Side Deltoids"]
@@ -54,7 +54,7 @@ export default function PushDay() {
       name: "Standing Cable Decline Press",
       sets: "4 sets",
       reps: "8-12 reps",
-      video: "/src/assets/StandingCableDeclinePress.mp4",
+      video: "/public/assets/StandingCableDeclinePress.mp4",
       description: "Target the lower chest with this cable press variation.",
       tips: ["Adjust cable height", "Keep elbows slightly bent", "Focus on contraction"],
       muscles: ["Lower Chest", "Triceps", "Shoulders"]
@@ -64,7 +64,7 @@ export default function PushDay() {
       name: "Triceps Pushdown",
       sets: "3 sets",
       reps: "10-15 reps",
-      video: "/src/assets/TricepsPushdown.mp4",
+      video: "/public/assets/TricepsPushdown.mp4",
       description: "Cable exercise for tricep development and definition.",
       tips: ["Keep elbows stationary", "Full extension at bottom", "Squeeze triceps"],
       muscles: ["Triceps"]
