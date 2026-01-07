@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import Workouts from "./pages/Workouts";
 import PushDay from "./pages/PushDay";
@@ -87,6 +88,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Router>
+        <ScrollToTop />
         <div className="flex flex-col min-h-screen">
           <Navbar />
           <main className="flex-1">
