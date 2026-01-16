@@ -17,6 +17,24 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu on route change and restore scroll
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
+  // Prevent background scroll when the mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Workouts", path: "/workouts" },
@@ -31,7 +49,7 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.4, 0.0, 0.2, 1] }}
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300",
+        "fixed top-0 w-full z-50 transition-all duration-300 relative",
         scrolled 
           ? "bg-background/80 backdrop-blur-md border-b border-border shadow-lg" 
           : "bg-transparent"
@@ -88,6 +106,8 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 rounded-lg bg-accent text-foreground-secondary hover:text-foreground hover:bg-accent-secondary transition-colors duration-200"
+              aria-expanded={isOpen}
+              aria-label="Toggle navigation menu"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -97,13 +117,17 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <motion.div
-        initial={{ opacity: 0, height: 0 }}
+        initial={false}
         animate={{ 
           opacity: isOpen ? 1 : 0, 
           height: isOpen ? "auto" : 0 
         }}
-        transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
-        className="md:hidden overflow-hidden bg-background-secondary/95 backdrop-blur-md border-b border-border"
+        transition={{ duration: 0.28, ease: [0.4, 0.0, 0.2, 1] }}
+        className={cn(
+          "md:hidden absolute inset-x-0 top-16 overflow-hidden border-b border-border",
+          "bg-background-secondary/95 backdrop-blur-md shadow-xl shadow-black/25",
+          isOpen ? "pointer-events-auto" : "pointer-events-none"
+        )}
       >
         <div className="px-4 py-4 space-y-2">
           {navItems.map((item) => (

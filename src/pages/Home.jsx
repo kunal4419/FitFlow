@@ -1,9 +1,25 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Dumbbell, Target, TrendingUp, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn, gradients, shadows } from "../lib/utils";
 
 export default function Home() {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const updateProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
+    };
+
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    return () => window.removeEventListener("scroll", updateProgress);
+  }, []);
+
   const features = [
     {
       icon: <Dumbbell className="w-6 h-6" />,
@@ -33,6 +49,16 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Scroll progress bar - Home only */}
+      <div className="fixed top-0 left-0 right-0 z-[60] h-1.5 bg-border/40 backdrop-blur-md pointer-events-none">
+        <motion.div
+          className="h-full bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 shadow-lg shadow-primary-500/30"
+          initial={{ width: "0%" }}
+          animate={{ width: `${scrollProgress}%` }}
+          transition={{ duration: 0.1, ease: "easeOut" }}
+        />
+      </div>
+
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-20 pb-32">
         {/* Background Effects */}

@@ -79,6 +79,12 @@
     animation: slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1);
   }
 
+  /* Disable accordion animations when requested */
+  .no-accordion-anim [data-state="open"],
+  .no-accordion-anim [data-state="closed"] {
+    animation: none !important;
+  }
+
   /* Loading states */
   .loading-shimmer {
     background: linear-gradient(

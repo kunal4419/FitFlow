@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
   ArrowUpCircle, 
@@ -83,12 +82,7 @@ export default function Workouts() {
         </div>
         
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
               Choose your{" "}
               <span className={gradients.primaryText}>
@@ -99,20 +93,17 @@ export default function Workouts() {
               Select from our scientifically designed workout routines. Each split is optimized 
               for maximum muscle growth and recovery.
             </p>
-          </motion.div>
+          </div>
 
           {/* Workout Cards */}
-          <Accordion.Root type="single" collapsible className="space-y-6">
+          <Accordion.Root type="single" collapsible className="space-y-6 no-accordion-anim">
             {workoutSplit.map((workout, index) => (
               <Accordion.Item
                 key={workout.id}
                 value={workout.id}
                 asChild
               >
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                <div
                   className={cn(
                     "group rounded-2xl border border-border bg-accent/50 backdrop-blur-sm overflow-hidden",
                     "hover:border-border-secondary hover:bg-accent/70 transition-all duration-300",
@@ -142,7 +133,7 @@ export default function Workouts() {
                     <ChevronRight className="w-6 h-6 text-foreground-muted group-data-[state=open]:rotate-90 transition-transform duration-200" />
                   </Accordion.Trigger>
                   
-                  <Accordion.Content className="px-8 pb-8 data-[state=open]:animate-slide-down data-[state=closed]:animate-slide-up">
+                  <Accordion.Content className="px-8 pb-8">
                     <div className="grid md:grid-cols-2 gap-6 pt-4 border-t border-border/50">
                       <div className="space-y-4">
                         <p className="text-foreground-secondary leading-relaxed">
@@ -180,9 +171,7 @@ export default function Workouts() {
                         </div>
                         
                         <Link to={workout.path}>
-                          <motion.button
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
+                          <button
                             className={cn(
                               "mt-4 px-6 py-3 rounded-lg font-medium text-white transition-all duration-300",
                               `bg-gradient-to-r ${workout.color}`,
@@ -191,12 +180,12 @@ export default function Workouts() {
                           >
                             Start {workout.title}
                             <ChevronRight className="inline ml-2 w-4 h-4" />
-                          </motion.button>
+                          </button>
                         </Link>
                       </div>
                     </div>
                   </Accordion.Content>
-                </motion.div>
+                </div>
               </Accordion.Item>
             ))}
           </Accordion.Root>
@@ -206,11 +195,7 @@ export default function Workouts() {
       {/* Tips Section */}
       <section className="py-20 border-t border-border">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+          <div
             className={cn(
               "p-8 rounded-2xl border border-border",
               gradients.card,
@@ -226,7 +211,7 @@ export default function Workouts() {
               <p>• Maintain proper form throughout all exercises</p>
               <p>• Stay hydrated and fuel your workouts with adequate nutrition</p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>
